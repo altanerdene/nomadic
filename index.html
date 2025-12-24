@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Талын Нүүдэлчдийн Өв - Хариуцлагатай Нүүдэлчин Баталгаажуулалт</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@300;400;600;700&family=Cormorant+Garamond:wght@300;400;600;700&family=Noto+Sans+Mongolian&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --forest-green: #2D5016;
+            --sage-green: #8BA888;
+            --mint-light: #E8F5E9;
+            --earth-warm: #A0826D;
+            --paper-white: #FAFAFA;
+            --charcoal: #2C3E2E;
+            --accent-green: #4CAF50;
+            --soft-gray: #F5F5F5;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Serif Bengali', serif;
+            color: var(--charcoal);
+            background: var(--paper-white);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        /* Subtle Organic Background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 10% 20%, rgba(139, 168, 136, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 90% 80%, rgba(45, 80, 22, 0.02) 0%, transparent 40%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Header & Navigation */
+        header {
+            position: sticky;
+            top: 0;
+            background: rgba(250, 250, 250, 0.98);
+            backdrop-filter: blur(12px);
+            padding: 1.2rem 2rem;
+            box-shadow: 0 1px 0 rgba(45, 80, 22, 0.08);
+            z-index: 1000;
+            border-bottom: 1px solid var(--mint-light);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--forest-green);
+            letter-spacing: 0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: var(--charcoal);
+            text-decoration: none;
+            font-weight: 400;
+            font-size: 0.95rem;
+            position: relative;
+            transition: color 0.3s ease;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--accent-green);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-green);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .language-selector {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .lang-btn {
+            background: transparent;
+            border: 1px solid var(--sage-green);
+            color: var(--charcoal);
+            padding: 0.4rem 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .lang-btn:hover, .lang-btn.active {
+            background: var(--accent-green);
+            color: white;
+            border-color: var(--accent-green);
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            min-height: 75vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(180deg, var(--mint-light) 0%, var(--paper-white) 100%);
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50 0 L50 100 M0 50 L100 50' stroke='%238BA888' stroke-width='0.5' fill='none' opacity='0.1'/%3E%3C/svg%3E");
+            opacity: 0.4;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            padding: 3rem 2rem;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3.5rem;
+            font-weight: 400;
+            color: var(--forest-green);
+            margin-bottom: 1.5rem;
+            line-height: 1.3;
+            letter-spacing: -0.5px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--earth-warm);
+            margin-bottom: 3rem;
+            font-weight: 300;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.8;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1.3s ease-out;
+        }
+
+        .btn {
+            padding: 0.9rem 2.2rem;
+            font-size: 1rem;
+            font-weight: 500;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: var(--accent-green);
+            color: white;
+            box-shadow: 0 2px 8px rgba(76, 175, 80, 0.2);
+        }
+
+        .btn-primary:hover {
+            background: var(--forest-green);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(45, 80, 22, 0.25);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--forest-green);
+            border: 1.5px solid var(--sage-green);
+        }
+
+        .btn-secondary:hover {
+            background: var(--mint-light);
+            border-color: var(--accent-green);
+            transform: translateY(-2px);
+        }
+
+        /* Certificate Search Section */
+        .cert-search {
+            background: white;
+            padding: 3rem 2rem;
+            margin: 4rem auto;
+            max-width: 700px;
+            border-radius: 2px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+            border-left: 3px solid var(--accent-green);
+        }
+
+        .cert-search h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            font-weight: 400;
+            color: var(--forest-green);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .search-box {
+            display: flex;
+            gap: 0.8rem;
+            margin-top: 2rem;
+        }
+
+        .search-box input {
+            flex: 1;
+            padding: 0.9rem 1.2rem;
+            font-size: 0.95rem;
+            border: 1px solid var(--sage-green);
+            border-radius: 2px;
+            font-family: inherit;
+            transition: all 0.3s ease;
+            background: var(--soft-gray);
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: var(--accent-green);
+            background: white;
+            box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.1);
+        }
+
+        .search-box button {
+            padding: 0.9rem 1.8rem;
+            background: var(--forest-green);
+            color: white;
+            border: none;
+            border-radius: 2px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .search-box button:hover {
+            background: var(--accent-green);
+        }
+
+        /* Services Section */
+        .services {
+            padding: 6rem 2rem;
+            background: var(--paper-white);
+        }
+
+        .services h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            font-weight: 400;
+            text-align: center;
+            color: var(--forest-green);
+            margin-bottom: 4rem;
+            position: relative;
+        }
+
+        .services h2::after {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 2px;
+            background: var(--accent-green);
+        }
+
+        .service-grid {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2.5rem 2rem;
+            border-radius: 2px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+        }
+
+        .service-card:hover {
+            border-left-color: var(--accent-green);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transform: translateY(-4px);
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            display: block;
+            filter: grayscale(20%);
+        }
+
+        .service-card h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: var(--forest-green);
+            margin-bottom: 1rem;
+            line-height: 1.4;
+        }
+
+        .service-card p {
+            color: var(--earth-warm);
+            line-height: 1.8;
+            font-size: 0.95rem;
+        }
+
+        /* Partners Section */
+        .partners {
+            padding: 6rem 2rem;
+            background: var(--mint-light);
+        }
+
+        .partners h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            font-weight: 400;
+            text-align: center;
+            margin-bottom: 4rem;
+            color: var(--forest-green);
+        }
+
+        .partner-grid {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .partner-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 2px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(139, 168, 136, 0.15);
+        }
+
+        .partner-item:hover {
+            border-color: var(--accent-green);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+
+        .partner-item a {
+            color: var(--charcoal);
+            text-decoration: none;
+            font-weight: 400;
+            font-size: 0.9rem;
+        }
+
+        /* Statistics Section */
+        .statistics {
+            padding: 5rem 2rem;
+            background: var(--forest-green);
+            color: white;
+        }
+
+        .stats-grid {
+            max-width: 900px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            text-align: center;
+        }
+
+        .stat-item {
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .stat-number {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3.5rem;
+            font-weight: 300;
+            color: var(--mint-light);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 6rem 2rem;
+            background: var(--paper-white);
+        }
+
+        .contact h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            font-weight: 400;
+            text-align: center;
+            color: var(--forest-green);
+            margin-bottom: 3rem;
+        }
+
+        .contact-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: start;
+            gap: 1rem;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 2px;
+            border-left: 2px solid var(--sage-green);
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            border-left-color: var(--accent-green);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .contact-icon {
+            font-size: 1.5rem;
+            color: var(--accent-green);
+        }
+
+        .contact-details h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 500;
+            color: var(--forest-green);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .contact-details p {
+            color: var(--earth-warm);
+            font-size: 0.95rem;
+        }
+
+        .map-container {
+            border-radius: 2px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            height: 400px;
+            background: var(--soft-gray);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--charcoal);
+            color: rgba(255, 255, 255, 0.85);
+            padding: 4rem 2rem 2rem;
+            border-top: 1px solid rgba(139, 168, 136, 0.2);
+        }
+
+        .footer-content {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h3 {
+            font-family: 'Cormorant Garamond', serif;
+            color: var(--mint-light);
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.75);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .footer-section a:hover {
+            color: var(--accent-green);
+        }
+
+        .footer-section p {
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .contact-content {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .search-box {
+                flex-direction: column;
+            }
+        }
+
+        /* Smooth Scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Loading Animation */
+        .fade-in {
+            opacity: 0;
+            animation: fadeIn 1s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">Талын Нүүдэлчдийн Өв</div>
+            <ul class="nav-links">
+                <li><a href="#home">Нүүр</a></li>
+                <li><a href="#about">Бидний тухай</a></li>
+                <li><a href="#services">Үйлчилгээ</a></li>
+                <li><a href="#news">Мэдээ</a></li>
+                <li><a href="#resources">Нөөц</a></li>
+                <li><a href="#standards">Стандарт</a></li>
+                <li><a href="#contact">Холбоо барих</a></li>
+            </ul>
+            <div class="language-selector">
+                <button class="lang-btn active">МОН</button>
+                <button class="lang-btn">ENG</button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Талын Нүүдэлчдийн Өв</h1>
+            <p class="hero-subtitle">Монголын нүүдэлчин соёл, тогтвортой мал аж ахуйг баталгаажуулан, дэлхийд таниулж байна</p>
+            <div class="cta-buttons">
+                <a href="#services" class="btn btn-primary">Баталгаажуулалт хүсэх</a>
+                <a href="#about" class="btn btn-secondary">Дэлгэрэнгүй</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certificate Search -->
+    <section class="cert-search">
+        <h2>Гэрчилгээ шалгах</h2>
+        <p style="text-align: center; color: var(--earth-brown); margin-bottom: 1rem;">
+            Гэрчилгээний дугаараар хайж, баталгаажуулалтын мэдээллийг шалгана уу
+        </p>
+        <div class="search-box">
+            <input type="text" placeholder="Гэрчилгээний дугаараа оруулна уу (жишээ: MRC-24/001)" id="certSearch">
+            <button onclick="searchCertificate()">Хайх</button>
+        </div>
+        <div id="searchResult" style="margin-top: 2rem; text-align: center;"></div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <h2>Баталгаажуулалтын үйлчилгээ</h2>
+        <div class="service-grid">
+            <div class="service-card">
+                <span class="service-icon">🐑</span>
+                <h3>Хариуцлагатай нүүдэлчин зохистой дадал</h3>
+                <p>MNS 6891:2025 стандартын дагуу малчдын бүлэг, хоршоодын үйл ажиллагаанд тохирлын үнэлгээ хийж баталгаажуулдаг.</p>
+            </div>
+            <div class="service-card">
+                <span class="service-icon">🧶</span>
+                <h3>Ноолуур бэлтгэх зохистой дадал</h3>
+                <p>Ноос, ноолуурын анхан шатны үйлдвэрлэлийг тогтвортой байдлын зарчимд нийцүүлэн баталгаажуулдаг.</p>
+            </div>
+            <div class="service-card">
+                <span class="service-icon">✓</span>
+                <h3>Тохирлын үнэлгээ</h3>
+                <p>Хөндлөнгийн хараат бус байдлаар үнэлж, найдвартай мэргэжлийн түвшний үйлчилгээ үзүүлнэ.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistics Section -->
+    <section class="statistics">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="stat-number">18</div>
+                <div class="stat-label">Баталгаажсан байгууллага</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">4+</div>
+                <div class="stat-label">Жилийн туршлага</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">100%</div>
+                <div class="stat-label">Итгэмжлэлтэй</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partners Section -->
+    <section class="partners">
+        <h2>Хамтрагч байгууллагууд</h2>
+        <div class="partner-grid">
+            <div class="partner-item">
+                <a href="https://www.mnas.gov.mn/" target="_blank">Стандарт хэмжил зүйн газар</a>
+            </div>
+            <div class="partner-item">
+                <a href="https://www.mofa.gov.mn/home" target="_blank">Гадаад харилцааны яам</a>
+            </div>
+            <div class="partner-item">
+                <a href="https://gazar.gov.mn/home" target="_blank">Газар зохион байгуулалтын газар</a>
+            </div>
+            <div class="partner-item">
+                <a href="https://www.avsf.org/en/pays-action/mongolia/" target="_blank">AVSF Монгол</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <h2>Холбоо барих</h2>
+        <div class="contact-content">
+            <div class="contact-info">
+                <div class="contact-item">
+                    <span class="contact-icon">📍</span>
+                    <div class="contact-details">
+                        <h3>Хаяг</h3>
+                        <p>Сүхбаатар дүүрэг, 8-р хороо, Юнити центр, 4-402 тоот</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-icon">📞</span>
+                    <div class="contact-details">
+                        <h3>Утас</h3>
+                        <p>(+976) 99939938</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <span class="contact-icon">✉️</span>
+                    <div class="contact-details">
+                        <h3>И-мэйл</h3>
+                        <p>gantsogt.gg@gmail.com</p>
+                    </div>
+                </div>
+            </div>
+            <div class="map-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2674.123456789!2d106.917!3d47.918!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDfCsDU1JzA0LjgiTiAxMDbCsDU1JzAxLjIiRQ!5e0!3m2!1sen!2smn!4v1234567890" 
+                        width="100%" 
+                        height="100%" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy">
+                </iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Талын Нүүдэлчдийн Өв</h3>
+                <p>Монголын нүүдэлчин соёл, тогтвортой мал аж ахуйг дэмжин, баталгаажуулж байна.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Холбоосууд</h3>
+                <ul>
+                    <li><a href="#about">Бидний тухай</a></li>
+                    <li><a href="#services">Үйлчилгээ</a></li>
+                    <li><a href="#news">Мэдээ мэдээлэл</a></li>
+                    <li><a href="#standards">Стандартууд</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Нөөц материал</h3>
+                <ul>
+                    <li><a href="#">Тайлан судалгаа</a></li>
+                    <li><a href="#">Гарын авлага</a></li>
+                    <li><a href="#">Баталгаажуулалтын журам</a></li>
+                    <li><a href="#">Асуулт хариулт</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Талын Нүүдэлчдийн Өв ТББ. Бүх эрх хуулиар хамгаалагдсан.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Certificate Search Functionality
+        function searchCertificate() {
+            const searchInput = document.getElementById('certSearch').value.trim();
+            const resultDiv = document.getElementById('searchResult');
+            
+            if (!searchInput) {
+                resultDiv.innerHTML = '<p style="color: #E74C3C;">Гэрчилгээний дугаараа оруулна уу</p>';
+                return;
+            }
+
+            // Simulated certificate database
+            const certificates = {
+                'MRC-24/001': { name: 'Ширээт хөгжил хоршоо', standard: 'MNS 6891:2020', issued: '2024-01-03', expires: '2026-01-02', status: 'Хүчинтэй' },
+                'MRC-24/002': { name: 'Малчдын хамтын хүч хоршоо', standard: 'MNS 6891:2020', issued: '2024-01-03', expires: '2026-01-02', status: 'Хүчинтэй' },
+                'MRC-24/003': { name: 'Тэгш улаан туг хоршоо', standard: 'MNS 6891:2020', issued: '2024-01-03', expires: '2026-01-02', status: 'Хүчинтэй' },
+                'MRC-22/006': { name: 'Хулгар бэлчээр ашиглагчдын хэсэг', standard: 'MNS 6891:2020', issued: '2022-12-21', expires: '2024-12-20', status: 'Хүчингүй' }
+            };
+
+            const cert = certificates[searchInput.toUpperCase()];
+            
+            if (cert) {
+                const statusColor = cert.status === 'Хүчинтэй' ? '#27AE60' : '#E74C3C';
+                resultDiv.innerHTML = `
+                    <div style="background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); text-align: left;">
+                        <h3 style="color: var(--night-blue); margin-bottom: 1rem; font-family: 'Cormorant Garamond', serif;">${cert.name}</h3>
+                        <p><strong>Гэрчилгээний дугаар:</strong> ${searchInput.toUpperCase()}</p>
+                        <p><strong>Стандарт:</strong> ${cert.standard}</p>
+                        <p><strong>Олгосон огноо:</strong> ${cert.issued}</p>
+                        <p><strong>Дуусах огноо:</strong> ${cert.expires}</p>
+                        <p><strong>Төлөв:</strong> <span style="color: ${statusColor}; font-weight: bold;">${cert.status}</span></p>
+                    </div>
+                `;
+            } else {
+                resultDiv.innerHTML = '<p style="color: #E74C3C;">Гэрчилгээ олдсонгүй. Дугаараа шалгаад дахин оролдоно уу.</p>';
+            }
+        }
+
+        // Allow Enter key to trigger search
+        document.getElementById('certSearch').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                searchCertificate();
+            }
+        });
+
+        // Smooth scroll with offset for fixed header
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const headerOffset = 80;
+                    const elementPosition = target.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Animate statistics on scroll
+        const observerOptions = {
+            threshold: 0.5
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.stat-item, .service-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.8s ease-out';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
